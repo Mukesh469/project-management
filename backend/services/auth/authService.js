@@ -94,7 +94,7 @@ export const loginPersonService = async (data, userAgent = "", ipAddress = "") =
 
   return {
     accessToken,
-    refreshToken: refreshTokenData.token, // Unhashed token to send to client
+    refreshToken: refreshTokenData.token, // unhashed token
     refreshTokenExpiry: refreshTokenData.expiresAt,
     person: publicPerson(person),
   };

@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 
 const Login = ({ loginRole }) => {
     const { login, logout, loading } = useContext(AuthContext);
+
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
@@ -114,9 +115,10 @@ const Login = ({ loginRole }) => {
                         >
                             {loading ? <div className="font-semibold">Logging in...</div> : <div className="font-semibold">Login</div>}
                         </button>
+                        {loginRole === 'employee' ? (<button className="hover:text-blue-500" onClick={() => navigate("/login/manager")}>login as manager</button>) : (<button className="hover:text-blue-500" onClick={() => navigate("/login/employee")}>login as employee</button>)}
+
                     </form>
 
-                    {loginRole === 'employee' ? (<button onClick={() => navigate("/login/manager")}>login as manager</button>) : (<button onClick={() => navigate("/login/employee")}>login as employee</button>)}
                 </div>
             </div>
 

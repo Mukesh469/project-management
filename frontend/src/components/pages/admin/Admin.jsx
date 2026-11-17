@@ -1,30 +1,26 @@
 import { useContext } from "react";
-import AuthContext from "../../../context/auth/AuthContext";
 import { Navigate } from "react-router-dom";
+import AuthContext from "../../../context/auth/AuthContext";
+import PersonContext from "../../../context/person/PersonContext";
 
 const Admin = () => {
-  const { accessToken, person, loading } = useContext(AuthContext);
+  const { authTokens } = useContext(AuthContext);
+  const { person } = useContext(PersonContext);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  const role = person?.role || "admin";
+  console.log(`role`, role);
 
-  // Check authentication
-  if (!accessToken || !person) {
+  const token = localStorage.getItem("adminToken") || authTokens?.admin;
+
+  if (!token) {
     return <Navigate to="/login/admin" replace />;
-  }
-
-  // Check role
-  if (person.role !== "admin") {
-    return <Navigate to={`/login/${person.role}`} replace />;
-  }
+  };
 
   return (
     <div>
       <h1>Welcome Admin</h1>
-      <p>Role: {person.role}</p>
     </div>
   );
 };
 
-export default Admin;
+export default Admin; 

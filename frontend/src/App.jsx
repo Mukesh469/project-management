@@ -11,6 +11,7 @@ import PersonState from './context/person/PersonState'
 
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import LandingPage from './components/common/LandingPage'
 
 function App() {
 
@@ -54,7 +55,8 @@ function AppRoutes() {
 
       </Route>
 
-      <Route path="/*" element={<Employees />} />
+      <Route path='/*' element={<LandingPage />} />
+      <Route path="/employee" element={<Employees />} />
       <Route path="/manager/*" element={<Manager />} />
       <Route path="/admin/*" element={<Admin />} />
     </Routes>

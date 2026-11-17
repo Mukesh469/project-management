@@ -44,13 +44,6 @@ export const generateRefreshToken = async (personId, userAgent = "", ipAddress =
   };
 };
 
-/**
- * Verify Refresh Token
- * - Check if token exists in database
- * - Check if not revoked
- * - Check if not expired
- * - Return person data
- */
 export const verifyRefreshToken = async (token) => {
   if (!token) {
     throw new AppError("Refresh token is required", 401);
@@ -82,11 +75,6 @@ export const verifyRefreshToken = async (token) => {
   }
 };
 
-/**
- * Revoke Refresh Token
- * - Mark token as revoked (logout)
- * - Can revoke all tokens for a person (logout from all devices)
- */
 export const revokeRefreshToken = async (tokenId) => {
   if (!tokenId) {
     throw new AppError("tokenId is required", 500);
@@ -105,10 +93,6 @@ export const revokeRefreshToken = async (tokenId) => {
   return true;
 };
 
-/**
- * Revoke All Tokens for a Person
- * - Logout from all devices
- */
 export const revokeAllTokensForPerson = async (personId) => {
   if (!personId) {
     throw new AppError("personId is required", 500);
@@ -122,12 +106,6 @@ export const revokeAllTokensForPerson = async (personId) => {
   return result.modifiedCount;
 };
 
-/**
- * Verify Access Token
- * - Simple JWT verification
- * - No database lookup needed
- * - Returns decoded payload
- */
 export const verifyAccessToken = (token) => {
   if (!token) {
     throw new AppError("Access token is required", 401);
